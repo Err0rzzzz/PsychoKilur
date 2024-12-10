@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimulus Display</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Stimulus Display Settings</h1>
+
+    <div id="monitor-settings">
+        <h2>Monitor Settings</h2>
+        <form id="monitor-settings-form" onsubmit="event.preventDefault(); setMonitorSettings();">
+            <label for="distance">Distance (cm):</label>
+            <input type="number" id="distance" name="distance" step="0.1" value="17" required><br>
+
+            <label for="width">Width (cm):</label>
+            <input type="number" id="width" name="width" step="0.1" value="70" required><br>
+
+            <label for="hres">Horizontal Resolution (pixels):</label>
+            <input type="number" id="hres" name="hres" step="1" value="3840" required><br>
+
+            <label for="vres">Vertical Resolution (pixels):</label>
+            <input type="number" id="vres" name="vres" step="1" value="2160" required><br>
+
+            <button type="submit">Set Monitor Settings</button>
+        </form>
+    </div>
+    <button id="reedit-monitor-settings" style="display: none;" onclick="toggleMonitorSettings()">Re-edit Monitor Settings</button>
+
+    <h2>Stimulus Settings</h2>
+    <div id="stimulus-settings">
+        <label for="stimulus_type">Stimulus Type:</label>
+        <select id="stimulus_type" name="stimulus_type" required>
+            <option value="grating">Grating</option>
+            <option value="checkerboard">Checkerboard</option>
+        </select><br>
+
+        <form id="stimulus-settings-form-grating" onsubmit="event.preventDefault(); runStimulus('grating');" style="display: none;">
+            <label for="start_delay_grating">Start Delay (seconds):</label>
+            <input type="number" id="start_delay_grating" name="start_delay_grating" step="0.1" required>
+            <small>Time before stimulus starts</small><br>
+
+            <label for="sessions_grating">Sessions:</label>
+            <input type="number" id="sessions_grating" name="sessions_grating" step="1" required>
+            <small>Number of sessions</small><br>
+
+            <label for="reversals_grating">Reversals:</label>
+            <input type="number" id="reversals_grating" name="reversals_grating" step="1" required>
+            <small>Number of phase reversals per session</small><br>
+
+            <label for="frequency_grating">Frequency (Hz):</label>
+            <input type="number" id="frequency_grating" name="frequency_grating" step="0.1" required>
+            <small>Frequency of the stimulus</small><br>
+
+            <label for="orientation_grating">Orientation (degrees):</label>
+            <input type="number" id="orientation_grating" name="orientation_grating" step="0.1" required>
+            <small>Orientation of the grating</small><br>
+
+            <label for="contrast_grating">Contrast:</label>
+            <input type="number" id="contrast_grating" name="contrast_grating" step="0.01" required>
+            <small>Contrast of the stimulus</small><br>
+
+            <label for="inter_session_length_grating">Inter-Session Length (seconds):</label>
+            <input type="number" id="inter_session_length_grating" name="inter_session_length_grating" step="0.1" required>
+            <small>Interval between sessions</small><br>
+
+            <label for="spatial_freq_grating">Spatial Frequency (cycles/deg):</label>
+            <input type="number" id="spatial_freq_grating" name="spatial_freq_grating" step="0.1"><br>
+
+            <label for="phase_grating">Phase Increment:</label>
+            <input type="number" id="phase_grating" name="phase_grating" step="0.1">
+            <small>Phase increment per reversal</small><br>
+
+            <button type="submit">Run Grating Stimulus</button>
+        </form>
+
+        <form id="stimulus-settings-form-checkerboard" onsubmit="event.preventDefault(); runStimulus('checkerboard');" style="display: none;">
+            <label for="start_delay_checkerboard">Start Delay (seconds):</label>
+            <input type="number" id="start_delay_checkerboard" name="start_delay_checkerboard" step="0.1" required>
+            <small>Time before stimulus starts</small><br>
+
+            <label for="contrast_checkerboard">Contrast:</label>
+            <input type="number" id="contrast_checkerboard" name="contrast_checkerboard" step="0.01" required>
+            <small>Contrast of the stimulus</small><br>
+
+            <label for="spatial_freq_checkerboard">Spatial Frequency (cycles/deg):</label>
+            <input type="number" id="spatial_freq_checkerboard" name="spatial_freq_checkerboard" step="0.01" required><br>
+
+            <label for="duration_checkerboard">Duration (second):</label>
+            <input type="number" id="duration_checkerboard" name="duration_checkerboard" step="0.01" required><br>
+
+
+            <button type="submit">Run Checkerboard Stimulus</button>
+        </form>
+
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
